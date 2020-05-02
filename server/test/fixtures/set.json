@@ -1,0 +1,106 @@
+{
+    "validSet": [
+        {
+            "attributes": {
+                "color": "green",
+                "shape": "triangle",
+                "pattern": "solid",
+                "shapeCount": 1
+            }
+        },
+        {
+            "attributes": {
+                "color": "green",
+                "shape": "triangle",
+                "pattern": "solid",
+                "shapeCount": 2
+            }
+        },
+        {
+            "attributes": {
+                "color": "green",
+                "shape": "triangle",
+                "pattern": "solid",
+                "shapeCount": 3
+            }
+        }
+    ],
+    "invalidSet1": [
+        {
+            "attributes": {
+                "color": "red",
+                "shape": "triangle",
+                "pattern": "solid",
+                "shapeCount": 1
+            }
+        },
+        {
+            "attributes": {
+                "color": "red",
+                "shape": "triangle",
+                "pattern": "solid",
+                "shapeCount": 2
+            }
+        },
+        {
+            "attributes": {
+                "color": "red",
+                "shape": "triangle",
+                "pattern": "none",
+                "shapeCount": 1
+            }
+        }
+    ],
+    "invalidSet2": [
+        {
+            "attributes": {
+                "color": "purple",
+                "shape": "squiggle",
+                "pattern": "solid",
+                "shapeCount": 3
+            }
+        },
+        {
+            "attributes": {
+                "color": "purple",
+                "shape": "triangle",
+                "pattern": "none",
+                "shapeCount": 2
+            }
+        },
+        {
+            "attributes": {
+                "color": "purple",
+                "shape": "triangle",
+                "pattern": "none",
+                "shapeCount": 3
+            }
+        }
+    ],
+    "invalidSet3": [
+        {
+            "attributes": {
+                "color": "green",
+                "shape": "squiggle",
+                "pattern": "solid",
+                "shapeCount": 3
+            }
+        },
+        {
+            "attributes": {
+                "color": "purple",
+                "shape": "squiggle",
+                "pattern": "none",
+                "shapeCount": 2
+            }
+        },
+        {
+            "attributes": {
+                "color": "purple",
+                "shape": "squiggle",
+                "pattern": "none",
+                "shapeCount": 1
+            }
+        }
+    ]
+}

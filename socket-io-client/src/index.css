@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.card {
+  display: table-cell;
+  height: 135px;
+  width: 100px;
+  vertical-align: middle;
+  background: url(https://smart-games.org/images/card.png) no-repeat;
+}
+
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  border-spacing: 2px;
+  border-color: grey;
+  border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.cardColor-red {
+  color: #ff0000;
+}
+
+.cardColor-green {
+  color: #09ff00;
+}
+
+.cardColor-purple {
+  color: #8c00ff;
+}
+
+td.selected {
+  background: url(https://smart-games.org/images/card_selected.png) no-repeat !important;
+}
+
+td.selected.card {
+  background: none;
+
+}

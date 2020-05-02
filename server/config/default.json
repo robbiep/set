@@ -1,0 +1,36 @@
+{
+    "board": {
+        "minBoardSize": 9,
+        "maxBoardSize": 21
+    },
+    "cards": {
+        "color": ["red", "green", "purple"],
+        "shape": ["oval", "triangle", "squigle"],
+        "pattern": ["none", "striped", "solid"],
+        "shapeCount": [1, 2, 3]
+    },
+    "cardShapeMap": {
+        "oval": {
+            "none": "O",
+            "striped": "◒",
+            "solid": "●"
+        },
+        "triangle": {
+            "none": "△",
+            "striped": "◭",
+            "solid": "▲"
+
+        },
+        "squigle": {
+            "none": "□",
+            "striped": "◧",
+            "solid": "◼"
+        }
+    },
+    "game": {
+        "maxPlayerCount": 4
+    },
+    "set": {
+        "setSize": 3
+    }
+}
