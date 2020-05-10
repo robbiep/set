@@ -1,5 +1,6 @@
 const cardConfig = require('config').get('cards');
-const debug = require('debug')('app:cardSet')
+const debug = require('debug')('app:models:game:cardSet')
+const hash = require('object-hash');
 const _ = require('lodash');
 
 class CardSet {
@@ -13,7 +14,7 @@ class CardSet {
     }
 
     isSet() {
-        for (let attribute in cardConfig) {
+        for (const attribute in cardConfig) {
             if (!this.attributeEqual(attribute) && 
                 !this.attributeDifferent(attribute)) {
                     debug("No set found: \n" + this.toString())
@@ -23,6 +24,22 @@ class CardSet {
 
         debug("Set found: \n" + this.toString())
         return true;
+    }
+
+    getHashId() {
+        const attributeStrings = {};
+
+        // create a sorted list of all attributes for consistent hashing
+        for (const card of this.cards) {
+            for (const attribute in cardConfig) {
+                if (!attributeStrings[attributeStrings]) {
+                    attributeStrings[attributeStrings] = [];
+                }
+                attributeStrings[attributeStrings].push(new String(card['attributes'][attribute]));
+                attributeStrings[attributeStrings].sort();
+            }
+        }
+        return hash(attributeStrings);
     }
 
     attributeEqual(attribute) {

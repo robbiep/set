@@ -59,8 +59,3 @@ tr {
 td.selected {
   background: url(https://smart-games.org/images/card_selected.png) no-repeat !important;
 }
-
-td.selected.card {
-  background: none;
-
-}

@@ -2,20 +2,34 @@ import React, { useState, useEffect } from "react";
 import SocketContext from "./SocketContext";
 import { initSockets } from "../../sockets";
 
-const SocketProvider = (props) => {
-    const [value, setValue] = useState({
-        board: undefined,
-        setFound: undefined,
-    });
+class SocketProvider extends React.Component {
+    constructor(props) {
+        super(props);
+        this.updateState = this.updateState.bind(this)
+        this.state = {
+            board: undefined,
+            cardSelection: [],
+            setFound: undefined,
+            isActiveTurn: false,
+            update: this.updateState,
+        }
+    }
 
-    useEffect(() => initSockets({ setValue }), [initSockets]);
-    // Note, we are passing setValue ^ to initSockets
+    updateState(values) {
+        this.setState(values);
+    }
 
-    return(
-        <SocketContext.Provider value={ value }>
-            { props.children }
+    componentDidMount() {
+        initSockets({ setValue: this.updateState });
+    }
+
+    render() {
+        return (
+        <SocketContext.Provider value={ this.state }>
+            { this.props.children }
         </SocketContext.Provider>
-    )
+        )
+    }
 };
 
 export default SocketProvider;

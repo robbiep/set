@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import SocketContext from '../Socket/SocketContext';
-import { Card } from '../Card';
-import { SetForm } from '../SetForm';
+import React from "react";
+import SocketContext from './Socket/SocketContext';
+import { Card } from './Card';
+import { submitSet } from "../sockets/emit";
 
 const setSize = 3;
 
@@ -10,34 +10,25 @@ export class Board extends React.Component {
     
     constructor(props) {
         super(props);
+
         this.handleCardSelect = this.handleCardSelect.bind(this);
-        this.state = {
-            cardSelection: {},
-            cardSelectionArr: [],
-        }
     }
 
     handleCardSelect = index => {
-        const { cardSelection, cardSelectionArr } = this.state
-        const isSelected = cardSelection[index];
+        const { cardSelection, isActiveTurn } = this.context;
+        if (!isActiveTurn) return;
 
+        const isSelected = cardSelection[index] !== undefined;
         if (isSelected) {
             delete cardSelection[index];
-            this.setState({ cardSelection });
-            const arrIndex = cardSelectionArr.indexOf(index);
-            console.log('arr index', arrIndex)
-            if (arrIndex !== -1) {
-                cardSelectionArr.splice(arrIndex, 1);
-                this.setState({ cardSelectionArr });
-            }
-        } else if (Object.keys(cardSelection).length < setSize) {
-            cardSelection[index] = true;
-            this.setState({ cardSelection });
-            cardSelectionArr.push(index);
-            this.setState({ cardSelectionArr });
+        } else if (cardSelection.filter(() => { return true }).length < setSize) {
+            cardSelection[index] = index;
         }
 
-        console.log('selection', cardSelection, Object.keys(cardSelection))
+        this.context.update({cardSelection});
+        if(cardSelection.filter(() => { return true }).length === setSize) {
+            submitSet(cardSelection.filter(() => { return true }));
+        }
     }
 
     renderCardTable(cardRows) {
@@ -49,9 +40,11 @@ export class Board extends React.Component {
             cardTableRows.push(tableRow);
         }
         return (
-            <tbody>
-                {cardTableRows}
-            </tbody>
+            <table>
+                <tbody>
+                    {cardTableRows}
+                </tbody>
+            </table>
         )
     }
 
@@ -72,8 +65,8 @@ export class Board extends React.Component {
     }
 
     renderCardTableItem(boardIndex) {
-        const { board = [] } = this.context;
-        const isSelected = this.state.cardSelection[boardIndex];
+        const { board = [], cardSelection = [] } = this.context;
+        const isSelected = cardSelection[boardIndex] !== undefined;
         const className = isSelected ? 'selected' : '';
 
         const { color, shape, pattern, shapeCount } = board[boardIndex].attributes;
@@ -89,18 +82,9 @@ export class Board extends React.Component {
         const cardTable = this.renderCardTable();
 
         return (
-            <div>
-            <div><SetForm 
-                    position1={this.state.cardSelectionArr[0]} 
-                    position2={this.state.cardSelectionArr[1]}
-                    position3={this.state.cardSelectionArr[2]}
-                />
-            </div>
-            <div style={{ whiteSpace:'pre-wrap', fontFamily: 'consolas', margin: 'center'}} ><table>
+            <div style={{ whiteSpace:'pre-wrap', fontFamily: 'consolas', margin: 'center'}} >
                 {cardTable}
-            </table>
-        </div>
-        </div>
+            </div>
         );
     }
 }

@@ -32,5 +32,8 @@
     },
     "set": {
         "setSize": 3
+    },
+    "turn": {
+        "turnDuration": 5000
     }
 }

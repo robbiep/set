@@ -77,4 +77,20 @@ describe("cardSet.js", () => {
             expect(result3).to.equal(false);
         });
     });
+
+    describe('getHashId', () => {
+        it('returns a the same hashId for two different card sets with the same cards', () => {
+            const cardSet1 = new CardSet(card1, card2, card3);
+            const cardSet2 = new CardSet(card1, card2, card3);
+
+            expect(cardSet1.getHashId()).to.equal(cardSet2.getHashId());
+        });
+
+        it('returns a different hashId for two different card sets with the same cards', () => {
+            const cardSet1 = new CardSet(card1, card2, card3);
+            const cardSet2 = new CardSet(card1, card2, card4);
+
+            expect(cardSet1.getHashId()).not.to.equal(cardSet2.getHashId());
+        });
+    });
 });

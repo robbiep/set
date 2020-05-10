@@ -2,12 +2,23 @@
 
 class Player {
     constructor(playerId) {
-        this.playedId = 0;
+        this.playerId = playerId || 0;
         this.eloScore = 0;
         this.username = '';
         this.gamesWon = 0;
         this.gamesTied = 0;
         this.gamesLost = 0;
+
+        this.loadPlayer(playerId);
+    }
+
+    loadPlayer(playerId) {
+        // temp
+        this.eloScore = 1500;
+        this.username = 'tacocat';
+        this.gamesWon = 10;
+        this.gamesTied = 4;
+        this.gamesLost = 8;
     }
 }
 

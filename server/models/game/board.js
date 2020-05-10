@@ -6,6 +6,7 @@ class Board {
     constructor() {
         this.board = [];
         this.cardCount = 0;
+        this.activeSets = {};
     }
 
     hasMinBoard() {
@@ -32,16 +33,23 @@ class Board {
     }
 
     getCardSet(positions) {
-        console.log(positions)
-        const cardSet = new CardSet(
+        return new CardSet(
             this.board[positions[0]],
             this.board[positions[1]],
             this.board[positions[2]]
         );
-        return cardSet;
+    }
+
+    hasCardSet(positions) {
+        const cardSet = this.getCardSet(positions);
+        const hasCardSet = !!this.activeSets[cardSet.getHashId()];
+        debug('hasCardSet [' + hasCardSet +']: ' + positions);
+        return hasCardSet;
     }
 
     removeCard(position) {
+        debug('removeCard at position ' + position);
+        
         if (!this.board[position]) {
             throw `No card exists at position ${position}`;
         }
