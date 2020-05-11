@@ -14,6 +14,10 @@ class CardSet {
     }
 
     isSet() {
+        if (_.includes(this.cards, null)) {
+            return false;
+        }
+
         for (const attribute in cardConfig) {
             if (!this.attributeEqual(attribute) && 
                 !this.attributeDifferent(attribute)) {

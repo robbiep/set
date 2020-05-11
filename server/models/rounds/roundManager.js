@@ -32,13 +32,13 @@ class RoundManager {
     takeTurn(cardSelectionFunction) {
         debug('takeTurn');
 
-        const turnResult = this.currentRound.takeTurn(cardSelectionFunction);
+        const hasCardSet = this.currentRound.takeTurn(cardSelectionFunction);
         const currentTurn = this.currentRound.getCurrentTurn();
         if (!this.currentRound.isRoundActive()) {
             this.startNextRound();
         }
 
-        return { cardSet: turnResult, turn: currentTurn };
+        return { hasCardSet, turn: currentTurn };
     }
 
     getCurrentPlayer() {

@@ -70,10 +70,13 @@ describe("gameDealer.js", () => {
     });
         
 
-    describe("dealBoard - adds cards to the board until it's correctly full", () => {
+    describe.only("dealBoard - adds cards to the board until it's correctly full", () => {
         it("deals minimum cards if the board is not at min", () => {
             gameDealer.dealBoard(board, deck);
             expect(board.hasMinBoard()).to.be.true;
+            expect(board.board.length).to.equal(boardConfig.minBoardSize);
+            expect(board.cardCount).to.equal(boardConfig.minBoardSize);
+
 
             gameDealer.dealBoard(board, deck);
             expect(board.cardCount).to.equal(boardConfig.minBoardSize + setConfig.setSize);

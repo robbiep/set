@@ -1,16 +1,13 @@
 import React from "react";
-import SocketContext from './Socket/SocketContext';
+import { SocketContext } from './Socket/SocketContext';
 import { startTurn } from "../sockets/emit";
+import { Button } from 'react-bootstrap';
 
 export class StartTurnButton extends React.Component {
     static contextType = SocketContext;
 
     constructor(props) {
         super(props);
-        this.state = {
-            buttonName: "Set!",
-        };
-  
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -21,9 +18,9 @@ export class StartTurnButton extends React.Component {
   
     render() { 
         return (
-            <form  onSubmit={this.handleSubmit}>
-                <input disabled={this.context.isActiveTurn} ref="button" type="submit" value={this.state.buttonName} />
-            </form>
+            <Button variant="secondary" disabled={this.context.isActiveTurn} onClick={this.handleSubmit}>
+                Set!
+            </Button>
         );
     }
 }

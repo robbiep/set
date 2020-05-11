@@ -1,10 +1,18 @@
 import { createContext } from "react";
+import _ from 'lodash'
 
-const SocketContext = createContext({  
-    board: [],
-    cardSelection: [],
-    setFound: undefined,
-    isActiveTurn: false
-});
+const getDefaultState = () => {
+    return {
+        board: [],
+        cardSelection: [],
+        setFound: undefined,
+        isActiveTurn: false,
+    }
+};
 
-export default SocketContext;
+const SocketContext = createContext(getDefaultState());
+
+export {
+    SocketContext,
+    getDefaultState,
+};

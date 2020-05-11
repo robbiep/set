@@ -1,5 +1,5 @@
 const { findSet } = require('../../helpers/findSet');
-const debug = require('debug')('app:models:players:player')
+const debug = require('debug')('app:models:game:gameDealer')
 const config = require('config');
 const setConfig = config.get('set');
 const boardConfig = config.get('board');
@@ -48,7 +48,7 @@ class GameDealer {
     }
 
     dealCard(board, deck) {
-        debug('dealBoard')
+        debug('dealCard')
 
         if (board.hasMaxBoard()) {
             throw 'ERROR[BOARD_FULL]: The board is full!';

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import SocketContext from "./SocketContext";
+import { SocketContext, getDefaultState } from "./SocketContext";
 import { initSockets } from "../../sockets";
+import _ from 'lodash';
 
 class SocketProvider extends React.Component {
     constructor(props) {
         super(props);
+        
         this.updateState = this.updateState.bind(this)
+        const defaultState = getDefaultState();
         this.state = {
-            board: undefined,
-            cardSelection: [],
-            setFound: undefined,
-            isActiveTurn: false,
+            ...defaultState,
             update: this.updateState,
-        }
+        };
     }
 
     updateState(values) {

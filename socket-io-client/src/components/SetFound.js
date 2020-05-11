@@ -1,5 +1,5 @@
 import React from "react";
-import SocketContext from './Socket/SocketContext';
+import { SocketContext } from './Socket/SocketContext';
 
 export class SetFound extends React.Component {
     static contextType = SocketContext;

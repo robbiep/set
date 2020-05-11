@@ -1,61 +1,76 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .card {
-  display: table-cell;
-  height: 135px;
-  width: 100px;
-  vertical-align: middle;
-  background: url(https://smart-games.org/images/card.png) no-repeat;
+    display: table-cell;
+    height: 135px;
+    width: 100px;
+    vertical-align: middle;
 }
 
 table {
-  display: table;
-  border-collapse: separate;
-  box-sizing: border-box;
-  border-spacing: 2px;
-  border-color: grey;
-  border-top-width: 0px;
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-color: grey;
+    border-top-width: 0px;
     border-right-width: 0px;
     border-bottom-width: 0px;
     border-left-width: 0px;
+    margin: 0 auto;
 }
 
 tbody {
-  display: table-row-group;
-  vertical-align: middle;
-  border-color: inherit;
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
 }
 
 tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    margin: 5px;
 }
 
 .cardColor-red {
-  color: #ff0000;
+    color: #ff0000;
 }
 
 .cardColor-green {
-  color: #09ff00;
+    color: #09ff00;
 }
 
 .cardColor-purple {
-  color: #8c00ff;
+    color: #8c00ff;
 }
 
 td.selected {
-  background: url(https://smart-games.org/images/card_selected.png) no-repeat !important;
+    background-color: antiquewhite;
+    border-radius: 5px;
+}
+
+.btn {
+    margin: 20px;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.button-box {
+    text-align:center;
+    margin-top:20px;
 }

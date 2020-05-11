@@ -15,14 +15,17 @@ let game;
 io.on("connection", (socket) => {
     debug('socket - New client connected');
 
+    if (game && game.isStarted()) {
+        io.emit("draw_board", game.board.board, game.score[123]);
+    }
+
     socket.on("start_game", () => {
         debug('socket - start_game ')
-        game = new Game();
+        game = new Game({ dealerStrategyType: 'auto' });
         game.addPlayer({playerId: 123})
         game.start();
         game.startRound();
-        game.deal();
-        socket.emit("draw_board", game.board.board);
+        io.emit("draw_board", game.board.board);
     });
 
     socket.on("start_turn", (playerId) => {
@@ -41,7 +44,11 @@ io.on("connection", (socket) => {
 
         io.emit("set_found", isSetMsg);
         if (hasCardSet) {
-            socket.emit("draw_board", game.board.board);
+            console.log(game.board.hasMinBoard());
+            if (!game.board.hasActiveCardSets() || !game.board.hasMinBoard()) {
+                game.deal();
+            }
+            io.emit("draw_board", game.board.board, game.score[123]);
         }
         io.emit('turn_ended');
     });

@@ -1,5 +1,5 @@
 import React from "react";
-import SocketContext from './Socket/SocketContext';
+import { SocketContext } from './Socket/SocketContext';
 import { Card } from './Card';
 import { submitSet } from "../sockets/emit";
 
@@ -31,7 +31,7 @@ export class Board extends React.Component {
         }
     }
 
-    renderCardTable(cardRows) {
+    renderCardTable() {
         const { board = [] } = this.context;
         const cardTableRows = [];
         
@@ -66,10 +66,21 @@ export class Board extends React.Component {
 
     renderCardTableItem(boardIndex) {
         const { board = [], cardSelection = [] } = this.context;
+        console.log(cardSelection)
         const isSelected = cardSelection[boardIndex] !== undefined;
         const className = isSelected ? 'selected' : '';
 
-        const { color, shape, pattern, shapeCount } = board[boardIndex].attributes;
+        const rawCardData = board[boardIndex];
+        let attributes = {
+            color: '',
+            shape: '',
+            pattern: '',
+            shapeCount: '',
+        };
+        if (rawCardData) {
+            attributes = rawCardData.attributes;
+        }
+        const { color, shape, pattern, shapeCount } = attributes;
         const card = <Card color={color} shape={shape} pattern={pattern} shapeCount={shapeCount}/>
         return (
             <td key={boardIndex} className={className} onClick={() => this.handleCardSelect(boardIndex)}>
@@ -82,7 +93,7 @@ export class Board extends React.Component {
         const cardTable = this.renderCardTable();
 
         return (
-            <div style={{ whiteSpace:'pre-wrap', fontFamily: 'consolas', margin: 'center'}} >
+            <div style={{ whiteSpace:'pre-wrap', fontFamily: 'consolas' }} >
                 {cardTable}
             </div>
         );

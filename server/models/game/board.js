@@ -1,6 +1,8 @@
-const debug = require('debug')('app:board');
+const debug = require('debug')('app:models:game:board');
 const boardConfig = require('config').board;
 const CardSet = require('../game/cardSet').CardSet;
+const { findSet } = require('../../helpers/findSet');
+const _ = require('lodash');
 
 class Board {
     constructor() {
@@ -47,6 +49,24 @@ class Board {
         return hasCardSet;
     }
 
+    hasActiveCardSets() {
+        return !_.isEmpty(this.activeSets);
+    }
+
+    removeCardSet(positions) {
+        debug('removeSet: ' + positions);
+
+        const cardSet = this.getCardSet(positions);
+        
+        for (const position of positions) {
+            this.removeCard(position);
+        }
+
+        this.activeSets = {};
+        Object.assign(this.activeSets, findSet(this));
+        //this.compress();
+    }
+
     removeCard(position) {
         debug('removeCard at position ' + position);
         
@@ -55,9 +75,11 @@ class Board {
         }
 
         const removedCard = this.board[position];
+        debug('removeCard at position ' + position);
+        debug(removedCard);
+
         this.board[position] = null;
         this.cardCount--;
-        return removedCard;
     }
 
     compress() {

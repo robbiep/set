@@ -55,6 +55,10 @@ class Game {
         this.deal(this.board, this.deck);
     }
 
+    isStarted() {
+        return !!this.startTime;
+    }
+
     deal() {
         this.gameDealer.deal(this.board, this.deck)
     }
@@ -93,18 +97,13 @@ class Game {
         const cardSelectionFunction = () => { return this.board.hasCardSet(cardPositions) };
         const { hasCardSet, turn } = this.roundManager.takeTurn(cardSelectionFunction);
         if (hasCardSet) {
-            this.removeCardSet(cardPositions);
+            this.board.removeCardSet(cardPositions);
             const player = turn.getPlayer();
             this.score[player.playerId]++;
+            debug('player ' + player.playerId + ' got a set! Score is: ' + JSON.stringify(this.score))
         }
-    }
 
-    removeCardSet(cardPositions) {
-        debug('removeCardSet: ' + cardPositions);
-
-        for (const position of cardPositions) {
-            this.board.removeCard(position);
-        }
+        return hasCardSet;
     }
 
     toString() {
